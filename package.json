@@ -1,7 +1,7 @@
 {
   "name": "junglet",
   "version": "1.0.0",
-  "description": "Template language primarily used with Jungledrum",
+  "description": "Template language that allows clean html",
   "main": "index.js",
   "scripts": {
     "test": "standard && mocha"
