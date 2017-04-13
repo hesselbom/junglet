@@ -1,6 +1,6 @@
 {
   "name": "junglet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Template language that allows clean html",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,10 @@
   "author": {
     "name": "Viktor Hesselbom",
     "email": "viktor@hesselbom.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hesselbom/junglet.git"
   },
   "license": "ISC",
   "devDependencies": {
