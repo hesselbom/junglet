@@ -1,0 +1,26 @@
+{
+  "name": "junglet",
+  "version": "1.0.0",
+  "description": "Template language primarily used with Jungledrum",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && mocha"
+  },
+  "keywords": [
+    "template",
+    "jungledrum"
+  ],
+  "author": {
+    "name": "Viktor Hesselbom",
+    "email": "viktor@hesselbom.net"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "standard": "^10.0.1"
+  },
+  "dependencies": {
+    "htmlparser2": "^3.9.2",
+    "safe-eval": "^0.3.0"
+  }
+}
