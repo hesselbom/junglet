@@ -88,4 +88,11 @@ describe('junglet', function () {
       assert.equal(html.trim(), '<h1>abc</h1>')
     })
   })
+
+  describe('#renderFile()', function () {
+    it('should load imported files before render', function () {
+      let html = junglet.renderFile('./test/testfile-import.junglet.html', data)
+      assert.equal(html.trim(), '<h1>abc</h1>\n\n<h2>def</h2>')
+    })
+  })
 })

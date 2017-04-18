@@ -1,6 +1,7 @@
 const fs = require('fs')
 const htmlparser = require('htmlparser2')
 const safeEval = require('safe-eval')
+const path = require('path')
 
 const jtProps = [ 'jt-content', 'jt-each' ]
 const noJt = key => jtProps.indexOf(key) < 0
@@ -47,19 +48,23 @@ const stripJungledrumTag = html => html
   .replace(/<!--\s+<jungledrum>([\s\S]+)<\/jungledrum>\s+-->/, '')
   .replace(/<jungledrum>([\s\S]+)<\/jungledrum>/, '')
 
-const render = (template, locals) => {
+const importFiles = (html, dir) => html
+  .replace(/<!--\s*import\s+(\S+)\s*-->/, (_, file) => fs.readFileSync(path.join(dir, file), 'utf8'))
+
+const render = (template, locals, dir = '.') => {
   let handler = new htmlparser.DomHandler()
   let parser = new htmlparser.Parser(handler)
-  parser.parseComplete(template)
+  let html = importFiles(template, dir)
 
-  let html = handler.dom.map(domToHtml(locals)).join('')
+  parser.parseComplete(html)
 
+  html = handler.dom.map(domToHtml(locals)).join('')
   html = stripJungledrumTag(html)
 
   return html
 }
 
-const renderFile = (filename, locals) => render(fs.readFileSync(filename, 'utf8'), locals)
+const renderFile = (filename, locals) => render(fs.readFileSync(filename, 'utf8'), locals, path.dirname(filename))
 
 module.exports = {
   render,

@@ -15,6 +15,7 @@ npm install junglet
 
 ## Syntax
 ```html
+<!-- import header.html -->
 <h1 jt-content="header">Hello world</h1>
 <p jt-content="content">Lorem ipsum</p>
 <p jt-content="nested.value">Nested value</p>

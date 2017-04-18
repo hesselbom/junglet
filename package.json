@@ -1,6 +1,6 @@
 {
   "name": "junglet",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Template language that allows clean html",
   "main": "index.js",
   "scripts": {
