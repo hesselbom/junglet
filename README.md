@@ -4,6 +4,8 @@ junglet is a node template engine. The purpose of it is to allow viewing the fil
 
 This is done with a mixture of DOM attributes (`jt-content`, `jt-each`) and "junglet expressions" (`{j t}`). The value of these expressions are evaluated with [safe-eval](https://github.com/hacksparrow/safe-eval) and the resulting value is rendered.
 
+You can import other files with `<!-- import filename -->`. These will be imported before all expressions are evaluated.
+
 This is primarily used for Jungledrum. See [jungledrum](https://github.com/hesselbom/jungledrum) for more information.
 
 [![JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
