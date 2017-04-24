@@ -12,6 +12,8 @@ const data = {
   specialClass: 'special-class'
 }
 
+const trim = text => text.replace(/>\s*(.*)\s*</g, '>$1<').trim()
+
 describe('junglet', function () {
   describe('#render()', function () {
     it('should render correct data', function () {
@@ -34,7 +36,7 @@ describe('junglet', function () {
         <p class="{j specialClass t}">junglet expression in attribute</p>
       `, data)
 
-      assert.equal(html.replace(/\s+/g, ''), `
+      assert.equal(trim(html), trim(`
         <h1>abc</h1>
         <p>ghi</p>
         <p>Abc</p>
@@ -50,7 +52,7 @@ describe('junglet', function () {
           <li>junglet expression in content a</li><li>junglet expression in content b</li>
         </ul>
         <p class="special-class">junglet expression in attribute</p>
-      `.replace(/\s+/g, ''))
+      `))
     })
     it('should remove <jungledrum> tag', function () {
       let html = junglet.render(`
@@ -80,6 +82,22 @@ describe('junglet', function () {
         <!-- This is a comment -->
         <h1>abc</h1>
       `.trim())
+    })
+    it('should not remove any other html', function () {
+      let html = junglet.render(`
+          <!doctype html>
+          <title>abc</title>
+          <style>
+          html, body { height: 100%; padding: 0; margin: 0 }
+          </style>
+      `, data)
+      assert.equal(trim(html), trim(`
+        <!doctype html>
+        <title>abc</title>
+        <style>
+        html, body { height: 100%; padding: 0; margin: 0 }
+        </style>
+      `))
     })
   })
 

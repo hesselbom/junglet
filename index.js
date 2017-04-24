@@ -10,6 +10,7 @@ const domToHtml = locals => ({type, name, data, children = [], attribs}) => {
   switch (type) {
     case 'text': return data
     case 'comment': return `<!--${data}-->`
+    case 'style':
     case 'tag': {
       let attrKeys = Object.keys(attribs).filter(noJt)
       let attributes = attrKeys.length === 0
@@ -42,6 +43,8 @@ const domToHtml = locals => ({type, name, data, children = [], attribs}) => {
       let html = `<${name}${attributes}>${data || children.map(domToHtml(locals)).join('')}</${name}>`
       return insertExpressions(html, locals)
     }
+    case 'directive': return `<${data}>`
+    default: return `<${type} />`
   }
 }
 
