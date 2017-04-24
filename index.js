@@ -16,6 +16,10 @@ const domToHtml = locals => ({type, name, data, children = [], attribs}) => {
         ? ''
         : ' ' + attrKeys.map(a => `${a}="${attribs[a]}"`).join(' ')
 
+      if (attribs['jt-remove'] != null) {
+        return ''
+      }
+
       if (attribs['jt-each']) {
         let expr = attribs['jt-each']
         let each = safeEval(expr, Object.assign({ 'self': data }, locals))

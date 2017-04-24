@@ -23,6 +23,7 @@ describe('junglet', function () {
         <br />
         <ul>
           <li jt-each="list"><span jt-content="self">Test</span></li>
+          <li jt-remove>Should be removed</li>
         </ul>
         <ul>
           <li jt-each="list" jt-content="self" class="{j self t}"></li>
@@ -33,7 +34,7 @@ describe('junglet', function () {
         <p class="{j specialClass t}">junglet expression in attribute</p>
       `, data)
 
-      assert.equal(html.trim(), `
+      assert.equal(html.replace(/\s+/g, ''), `
         <h1>abc</h1>
         <p>ghi</p>
         <p>Abc</p>
@@ -49,7 +50,7 @@ describe('junglet', function () {
           <li>junglet expression in content a</li><li>junglet expression in content b</li>
         </ul>
         <p class="special-class">junglet expression in attribute</p>
-      `.trim())
+      `.replace(/\s+/g, ''))
     })
     it('should remove <jungledrum> tag', function () {
       let html = junglet.render(`

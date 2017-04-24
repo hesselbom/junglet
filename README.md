@@ -27,6 +27,7 @@ npm install junglet
 </ul>
 <ul>
   <li jt-each="list">junglet expression in content {j self t}</li>
+  <li jt-remove>This is just lorem ipsum which will be removed</li>
 </ul>
 <p class="{j specialClass t}">junglet expression in attribute</p>
 ```
