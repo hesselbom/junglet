@@ -20,9 +20,12 @@ describe('junglet', function () {
       let html = junglet.render(`
         <h1 jt-content="header">Hello world</h1>
         <p jt-content="content">Lorem ipsum</p>
+        <p jt-content="content" />
         <p jt-content="nested.value">Nested value</p>
+        <span jt-each="list">A <span>{j self t}</span> B</span>
         <p>First element of list is <span jt-content="list[0]"></span></p>
         <br />
+        <br>
         <ul>
           <li jt-each="list"><span jt-content="self">Test</span></li>
           <li jt-remove>Should be removed</li>
@@ -39,8 +42,12 @@ describe('junglet', function () {
       assert.equal(trim(html), trim(`
         <h1>abc</h1>
         <p>ghi</p>
+        <p>ghi</p>
         <p>Abc</p>
+        <span>A <span>a</span> B</span>
+        <span>A <span>b</span> B</span>
         <p>First element of list is <span>a</span></p>
+        <br />
         <br />
         <ul>
           <li><span>a</span></li><li><span>b</span></li>
@@ -87,16 +94,22 @@ describe('junglet', function () {
       let html = junglet.render(`
           <!doctype html>
           <title>abc</title>
-          <style>
+          <style type="text/css">
           html, body { height: 100%; padding: 0; margin: 0 }
           </style>
+          <script type="text/javascript">
+          var foo = 'bar'
+          </script>
       `, data)
       assert.equal(trim(html), trim(`
         <!doctype html>
         <title>abc</title>
-        <style>
+        <style type="text/css">
         html, body { height: 100%; padding: 0; margin: 0 }
         </style>
+        <script type="text/javascript">
+        var foo = 'bar'
+        </script>
       `))
     })
   })

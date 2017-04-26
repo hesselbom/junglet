@@ -10,6 +10,7 @@ const domToHtml = locals => ({type, name, data, children = [], attribs}) => {
   switch (type) {
     case 'text': return data
     case 'comment': return `<!--${data}-->`
+    case 'script':
     case 'style':
     case 'tag': {
       let attrKeys = Object.keys(attribs).filter(noJt)
@@ -60,7 +61,7 @@ const importFiles = (html, dir) => html
 
 const render = (template, locals, dir = '.') => {
   let handler = new htmlparser.DomHandler()
-  let parser = new htmlparser.Parser(handler)
+  let parser = new htmlparser.Parser(handler, { decodeEntities: true })
   let html = importFiles(template, dir)
 
   parser.parseComplete(html)
